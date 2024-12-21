@@ -199,14 +199,6 @@
           "definition": { "S": "Amazon RDS Multi-AZ deployments provide high availability for database instances by automatically replicating data across multiple availability zones." }
         }
       }
-    },
-    {
-      "PutRequest": {
-        "Item": {
-          "term": { "S": "Cloud Management Platform (CMP)" },
-          "definition": { "S": "A Cloud Management Platform (CMP) provides tools and services to manage cloud resources, including monitoring, automation, provisioning, and governance." }
-        }
-      }
     }
   ]
 }

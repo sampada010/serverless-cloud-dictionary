@@ -199,14 +199,6 @@
             "definition": { "S": "Cloud DevOps refers to the combination of cloud computing and DevOps practices to automate the software development lifecycle and improve collaboration between development and operations teams." }
           }
         }
-      },
-      {
-        "PutRequest": {
-          "Item": {
-            "term": { "S": "Cloud Cost Optimization" },
-            "definition": { "S": "Cloud cost optimization is the practice of minimizing the expenses associated with cloud services, often by optimizing resource allocation, reducing waste, and choosing cost-effective services." }
-          }
-        }
       }
     ]
   }

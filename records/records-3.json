@@ -199,22 +199,6 @@
             "definition": { "S": "Bandwidth is the maximum amount of data that can be transmitted over a network in a given amount of time." }
           }
         }
-      },
-      {
-        "PutRequest": {
-          "Item": {
-            "term": { "S": "Cloud Service Marketplace" },
-            "definition": { "S": "A Cloud Service Marketplace is a platform where customers can browse, purchase, and subscribe to various cloud-based applications and services from different vendors." }
-          }
-        }
-      },
-      {
-        "PutRequest": {
-          "Item": {
-            "term": { "S": "Cloud Incident Management" },
-            "definition": { "S": "Cloud incident management refers to processes used to detect, respond to, and resolve security incidents or operational issues within a cloud environment to minimize disruption." }
-          }
-        }
       }
     ]
   }

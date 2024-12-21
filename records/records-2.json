@@ -199,14 +199,6 @@
             "definition": { "S": "AWS Ground Station enables satellite operators to communicate with their satellites and process data using AWS infrastructure." }
           }
         }
-      },
-      {
-        "PutRequest": {
-          "Item": {
-            "term": { "S": "Cloud Deployment Model" },
-            "definition": { "S": "Cloud deployment models refer to the way in which cloud services are deployed, such as private cloud, public cloud, hybrid cloud, and multi-cloud." }
-          }
-        }
       }
     ]
   }
