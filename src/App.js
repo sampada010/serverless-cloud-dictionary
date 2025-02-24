@@ -11,23 +11,24 @@ const App = () => {
 
   const handleSearch = () => {
     console.log('Fetching data from API...');
-    
-    // Construct the URL based on searchTerm
-    const url = searchTerm
-      ? `${apiUrl}/get-definition?term=${encodeURIComponent(searchTerm)}`
-      : `${apiUrl}/get-definition`; // Adjust for getting all terms if no searchTerm
-
+  
     axios
-      .get(url)
+      .get(`${apiUrl}/get-definition`)
       .then(response => {
         console.log('API Response:', response.data);
-        setTerms(response.data ? [response.data] : []);  // Assuming only one term returned
-        setFilteredTerms(response.data ? [response.data] : []);
+        const allTerms = response.data || [];
+        setTerms(allTerms);
+  
+        // Filter terms based on searchTerm
+        const filtered = allTerms.filter((term) =>
+          term.term.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredTerms(filtered);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  };
+  };  
 
   return (
     <div className="App">
@@ -43,7 +44,7 @@ const App = () => {
       </header>
       <div className="dictionary-container">
         {filteredTerms.map((term) => (
-          <div key={term.term} className="card">
+          <div key={term.id || term.term} className="card">
             <h3>{term.term}</h3>
             <p>{term.definition}</p>
           </div>
