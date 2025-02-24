@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -8,39 +8,41 @@ const App = () => {
   const [filteredTerms, setFilteredTerms] = useState([]);
   const [error, setError] = useState('');
 
-  const apiUrl = 'https://951skqkgp9.execute-api.ap-south-1.amazonaws.com/dev';
+  const apiUrl = 'https://951skqkgp9.execute-api.ap-south-1.amazonaws.com/dev/get-definition';
 
-  const handleSearch = () => {
-    console.log('Fetching data from API...');
+  // Fetch terms on component mount
+  useEffect(() => {
+    fetchTerms();
+  }, []);
 
-    // Construct the URL based on searchTerm
-    const url = searchTerm
-      ? `${apiUrl}/get-definition?term=${encodeURIComponent(searchTerm)}`
-      : `${apiUrl}/get-definition`;
-
+  const fetchTerms = () => {
     axios
-      .get(url)
-      .then(response => {
-        console.log('Raw API Response:', response);
-        console.log('Response Data:', response.data);
-
-        // Handle response
+      .get(apiUrl)
+      .then((response) => {
         const allTerms = Array.isArray(response.data) ? response.data : [];
+        console.log('Fetched Terms:', allTerms);
 
         setTerms(allTerms);
-
-        // Filter terms based on search input
-        const filtered = allTerms.filter((term) =>
-          term.term.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setFilteredTerms(filtered);
-        setError(''); // Clear previous errors
+        setFilteredTerms(allTerms); // Show all terms by default
+        setError('');
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching data:', error);
         setError('Failed to fetch data from API.');
-        setFilteredTerms([]);
       });
+  };
+
+  // Handle search input
+  const handleSearch = () => {
+    if (!searchTerm) {
+      setFilteredTerms(terms); // Reset to show all terms if the search input is empty
+      return;
+    }
+
+    const filtered = terms.filter((term) =>
+      term.term.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredTerms(filtered);
   };
 
   return (
@@ -67,7 +69,7 @@ const App = () => {
             </div>
           ))
         ) : (
-          <p>{terms.length === 0 ? 'No terms found.' : 'Start typing to search for a term.'}</p>
+          <p>No terms found. Try a different search term.</p>
         )}
       </div>
     </div>
