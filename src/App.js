@@ -8,7 +8,7 @@ const App = () => {
   const [filteredTerms, setFilteredTerms] = useState([]);
   const [error, setError] = useState('');
 
-  const apiUrl = 'https://951skqkgp9.execute-api.ap-south-1.amazonaws.com/dev/get-definition';
+  const apiUrl = 'https://951skqkgp9.execute-api.ap-south-1.amazonaws.com/dev';
 
   // Fetch terms on component mount
   useEffect(() => {
